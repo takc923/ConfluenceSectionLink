@@ -1,8 +1,8 @@
 {
     "name": "Confluence Section Link",
     "manifest_version": 2,
-    "version": "0.0.1",
-    "description": "コンフルのページ内リンクを作る",
+    "version": "0.1.0",
+    "description": "Make internal link of the section in confluence.",
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
