@@ -42,7 +42,8 @@ function createIconAnchor(heading, enableEscapeUrl) {
     imgElement.style.height = settings[heading.tagName];
 
     var anchor = document.createElement("a");
-    var hash = (enableEscapeUrl) ? encodeURI(heading.id) : heading.id;
+    var hash = (heading.id) ? heading.id : heading.querySelector("a").name;
+    hash = (enableEscapeUrl) ? encodeURI(hash) : hash;
     anchor.href = '#' + hash;
     anchor.style.display = "none";
     anchor.appendChild(imgElement);
