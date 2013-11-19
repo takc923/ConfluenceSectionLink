@@ -7,9 +7,15 @@ var settings = {
     H6: "10px"
 };
 
-document.onreadystatechange = function () {
-    if (document.readyState != "complete"
-        || ! document.getElementById("confluence-base-url")) {
+var setIntervalId = setInterval(function(){
+    if (document.readyState == "complete") {
+        initialize();
+        clearInterval(setIntervalId);
+    }
+}, 1000);
+
+function initialize() {
+    if (document.getElementsByName("confluence-request-time").length === 0) {
         return;
     }
 
