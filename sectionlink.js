@@ -42,9 +42,22 @@ function createIconAnchor(heading, enableEscapeUrl) {
     imgElement.style.height = settings[heading.tagName];
 
     var anchor = document.createElement("a");
-    var hash = (heading.id) ? heading.id : heading.querySelector("a").name;
-    hash = (enableEscapeUrl) ? encodeURI(hash) : hash;
-    anchor.href = '#' + hash;
+    anchor.href = "javascript:void(0);";
+    anchor.dataset.rawHash = (heading.id) ? heading.id : heading.querySelector("a").name;
+    anchor.dataset.encodedHash = encodeURI(anchor.dataset.rawHash);
+    anchor.addEventListener("click", function() {
+        switch(location.hash) {
+            case '#' + this.dataset.rawHash:
+            location.hash = this.dataset.encodedHash;
+            break;
+            case '#' + this.dataset.encodedHash:
+            location.hash = this.dataset.rawHash;
+            break;
+            default:
+            location.hash = (enableEscapeUrl) ? this.dataset.encodedHash : this.dataset.rawHash;
+            break;
+        }
+    });
     anchor.style.display = "none";
     anchor.appendChild(imgElement);
 
