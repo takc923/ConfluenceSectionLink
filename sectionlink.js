@@ -8,12 +8,14 @@ var settings = {
 };
 
 function initialize() {
-    if (document.getElementsByName("confluence-request-time").length === 0) {
+    var content = document.getElementsByClassName("wiki-content")[0];
+    if (document.getElementsByName("confluence-request-time").length === 0 // not confluence page
+       || content == undefined) { // non content page like dashboard
         return;
     }
 
     chrome.storage.sync.get("enableEscapeUrl", function(items){
-        var headingList = document.getElementsByClassName("wiki-content")[0].querySelectorAll("h1, h2, h3, h4, h5, h6");
+        var headingList = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
         for (var i = 0; i < headingList.length; i++) {
             var iconAnchor = createIconAnchor(headingList[i], items.enableEscapeUrl);
             headingList[i].appendChild(iconAnchor);
