@@ -20,7 +20,6 @@ function initialize() {
             var iconAnchor = createIconAnchor(headingList[i], items.enableEscapeUrl);
             headingList[i].appendChild(iconAnchor);
 
-            // TODO: このaddEventListener、createIconAnchorの中でやる
             headingList[i].addEventListener("mouseover", function(){
                 this.lastChild.style.display = "inline";
             });
